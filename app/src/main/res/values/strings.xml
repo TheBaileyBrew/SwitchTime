@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SwitchTime</string>
+    <string name="travis_child_name">Travis</string>
+    <string name="brycen_child_name">Brycen</string>
+</resources>

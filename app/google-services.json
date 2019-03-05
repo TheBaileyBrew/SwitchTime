@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "744369085778",
+    "firebase_url": "https://switchtime-5e809.firebaseio.com",
+    "project_id": "switchtime-5e809",
+    "storage_bucket": "switchtime-5e809.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744369085778:android:db8cf63dfbea0e55",
+        "android_client_info": {
+          "package_name": "com.thebaileybrew.switchtime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744369085778-ee514iim94bm526bo8b41k0uqoo41t7n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thebaileybrew.switchtime",
+            "certificate_hash": "6fbda0ea65aa6c34080db7d332707e45accc9091"
+          }
+        },
+        {
+          "client_id": "744369085778-1980ciskb321o749lro6cdhcg3ki4n61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWvgIEJzX30x6obpSVCT_vhZZCBwdDeFQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744369085778-1980ciskb321o749lro6cdhcg3ki4n61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
