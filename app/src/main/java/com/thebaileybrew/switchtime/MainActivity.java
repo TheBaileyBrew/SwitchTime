@@ -8,11 +8,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.transition.Slide;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
@@ -26,6 +29,7 @@ import com.thebaileybrew.switchtime.adapter.Task;
 import com.thebaileybrew.switchtime.adapter.TaskList;
 import com.thebaileybrew.switchtime.fragments.BrycenChildFragment;
 import com.thebaileybrew.switchtime.fragments.TravisChildFragment;
+import com.thebaileybrew.switchtime.ui.SwitchTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabBrycen = tabLayout.getTabAt(0);
         tabTravis = tabLayout.getTabAt(1);
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(SwitchTime.getContext());
         selectedChild = sharedPrefs.getString(SELECTED_CHILD_PREF,"Brycen");
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mChildDatabaseReference = mFirebaseDatabase.getReference("Child");
@@ -141,16 +145,16 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
         //TODO: Check if empty - YES: Load default values, NO: Load DB values
         //mChildDatabaseReference.child("Brycen").setValue("0");
         //mChildDatabaseReference.child("Travis").setValue("0");
-        taskList = TaskList.getTasks();
-        for(int t = 0; t < taskList.size(); t++) {
-            final Task addTask = taskList.get(t);
-            mTaskDatabaseReference.child(addTask.getTaskDescription()).setValue(addTask);
-        }
-        travisList = TaskList.getTravisTasks();
-        for (int l = 0; l < travisList.size(); l++) {
-            final Task newTask = travisList.get(l);
-            mTravisTaskDatabaseReference.child(newTask.getTaskDescription()).setValue(newTask);
-        }
+        //taskList = TaskList.getTasks();
+        //for(int t = 0; t < taskList.size(); t++) {
+        //    final Task addTask = taskList.get(t);
+        //    mTaskDatabaseReference.child(addTask.getTaskDescription()).setValue(addTask);
+        //}
+        //travisList = TaskList.getTravisTasks();
+        //for (int l = 0; l < travisList.size(); l++) {
+        //    final Task newTask = travisList.get(l);
+        //    mTravisTaskDatabaseReference.child(newTask.getTaskDescription()).setValue(newTask);
+        //}
     }
 
     @Override
@@ -169,5 +173,23 @@ public class MainActivity extends AppCompatActivity implements TabLayout.BaseOnT
     public void onTabReselected(TabLayout.Tab tab) {
         Toast.makeText(this, String.valueOf(tab.getText()) + " already loaded", Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_toolbar, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_new_task:
+                Intent openNewTaskActivity = new Intent(this, AddTaskActivity.class);
+                startActivity(openNewTaskActivity);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

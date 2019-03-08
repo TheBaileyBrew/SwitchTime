@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/time_id"
+    android:layout_width="80dp"
+    android:layout_height="150dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:textSize="90sp"
+    android:textStyle="bold"
+    android:gravity="center_vertical|center_horizontal"
+    tools:text="0">
+</TextView>

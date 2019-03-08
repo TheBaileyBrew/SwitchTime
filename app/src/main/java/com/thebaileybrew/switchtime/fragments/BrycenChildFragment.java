@@ -1,6 +1,7 @@
 package com.thebaileybrew.switchtime.fragments;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.thebaileybrew.switchtime.AddTaskActivity;
 import com.thebaileybrew.switchtime.R;
 import com.thebaileybrew.switchtime.adapter.Task;
 import com.thebaileybrew.switchtime.adapter.TaskRecyclerAdapter;
@@ -35,6 +37,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static com.thebaileybrew.switchtime.utils.ConstantTribulations.BRYCEN;
+import static com.thebaileybrew.switchtime.utils.ConstantTribulations.SELECTED_CHILD_PREF;
+import static com.thebaileybrew.switchtime.utils.ConstantTribulations.TASK_ITEM_REFERENCE;
 
 public class BrycenChildFragment extends Fragment implements View.OnClickListener {
     private final static String TAG = BrycenChildFragment.class.getSimpleName();
@@ -155,11 +161,23 @@ public class BrycenChildFragment extends Fragment implements View.OnClickListene
                 Toast.makeText(SwitchTime.getContext(), task.getTaskDescription() + " has not been completed", Toast.LENGTH_SHORT).show();
             }
         });
+        dialogBuilder.setNeutralButton("EDIT TASK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Bundle passTask = new Bundle();
+                passTask.putParcelable(TASK_ITEM_REFERENCE, task);
+                passTask.putString(SELECTED_CHILD_PREF, BRYCEN);
+                Intent openEditActivity = new Intent(getActivity(), AddTaskActivity.class);
+                openEditActivity.putExtras(passTask);
+                startActivity(openEditActivity);
+            }
+        });
 
         AlertDialog alertDialog = dialogBuilder.create();
         alertDialog.show();
         alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimaryDark));
         alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorAccent));
+        alertDialog.getButton(DialogInterface.BUTTON_NEUTRAL).setTextColor(getResources().getColor(R.color.colorPrimary));
     }
 
     @Override

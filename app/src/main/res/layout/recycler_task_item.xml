@@ -16,7 +16,7 @@
         android:layout_margin="10dp"
         android:textSize="22sp"
         android:textColor="@color/colorPrimary"
-        android:text="10"/>
+        tools:text="10"/>
     <TextView
         android:id="@+id/time_description"
         app:layout_constraintTop_toTopOf="parent"
@@ -31,7 +31,7 @@
         android:textSize="18sp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Feed Bo Dinner..."/>
+        tools:text="Feed Bo Dinner..."/>
     <View
         android:id="@+id/divider_line_task"
         app:layout_constraintBottom_toBottomOf="parent"
